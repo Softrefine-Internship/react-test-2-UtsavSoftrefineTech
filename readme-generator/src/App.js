@@ -1,9 +1,13 @@
-import "./App.css";
+import Details from "./components/Details/Details";
+import Header from "./components/Header/Header";
+import GlobalStyle from "./GlobalStyle";
 
 function App() {
   return (
     <>
-      <h1 className="App">Readme Generator</h1>
+      <GlobalStyle />
+      <Header />
+      <Details />
     </>
   );
 }
