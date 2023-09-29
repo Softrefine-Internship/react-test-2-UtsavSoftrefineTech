@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: #fdfdfd;
-    font-family: "roboto", sans-serif;
+    font-family: 'Roboto Mono', sans-serif;
     line-height: 1;
   }
 `;

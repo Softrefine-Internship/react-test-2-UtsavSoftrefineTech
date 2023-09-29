@@ -2,19 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import Input from "./Input/Input";
 import Heading from "./Heading/Heading";
+import Category from "./Category/Category";
+import SocialLinks from "./SocialLinks/SocialLinks";
 
 const Details = () => {
   const Details = styled.div`
     width: 100%;
     height: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.084);
     margin-bottom: 2rem;
   `;
 
   const Section = styled.div`
     margin-bottom: 2rem;
-    padding: 2rem;
-    // background: #f5f5f5;
+    padding: 2rem 4rem;
   `;
 
   const BreakPoint = styled.div`
@@ -238,6 +238,13 @@ const Details = () => {
             width="30%"
             placeholder="I think I am funny"
           />
+        </Section>
+        <Section>
+          <Category />
+        </Section>
+        <Section>
+          <Heading heading="Social"></Heading>
+          <SocialLinks />
         </Section>
       </Details>
     </>
