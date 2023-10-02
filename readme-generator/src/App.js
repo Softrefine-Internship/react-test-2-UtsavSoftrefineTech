@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ActionButton from "./components/ActionButton/ActionButton";
 import Button from "./components/Button/Button";
@@ -25,6 +25,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <Header />
+
       {showPage ? (
         <>
           <ActionButtonWrapper>
@@ -40,7 +42,6 @@ function App() {
         </>
       ) : (
         <>
-          <Header />
           <Details />
           <Button onClick={toggleActionButtons} />
         </>

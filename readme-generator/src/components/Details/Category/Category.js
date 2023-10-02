@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SearchBar from "../SearchBar/SearchBar";
 import Heading from "../Heading/Heading";
@@ -481,8 +481,9 @@ const CategoryContainer = styled.div`
   }
 `;
 
-const Category = () => {
+const Category = ({ onSelectedSkillsChange }) => {
   const [searchInput, setSearchInput] = useState("");
+  const [selectedSkills, setSelectedSkills] = useState([]);
 
   const filteredSkills = Object.keys(categorizedSkills).reduce(
     (result, categoryKey) => {
@@ -504,6 +505,21 @@ const Category = () => {
   const handleClearSearch = () => {
     setSearchInput("");
   };
+
+  const handleCheckboxChange = (skill) => {
+    if (selectedSkills.includes(skill)) {
+      setSelectedSkills((prevSelectedSkills) =>
+        prevSelectedSkills.filter((selectedSkill) => selectedSkill !== skill)
+      );
+    } else {
+      setSelectedSkills((prevSelectedSkills) => [...prevSelectedSkills, skill]);
+    }
+  };
+
+  useEffect(() => {
+    // Call the callback function with the selectedSkills array
+    onSelectedSkillsChange(selectedSkills);
+  }, [selectedSkills]);
 
   return (
     <>
@@ -532,7 +548,7 @@ const Category = () => {
                     id={skill}
                     type="checkbox"
                     className="checkbox-label__input"
-                    onChange={() => {}}
+                    onChange={() => handleCheckboxChange(skill)}
                   />
                   <span className="checkbox-label__control" />
                   <img

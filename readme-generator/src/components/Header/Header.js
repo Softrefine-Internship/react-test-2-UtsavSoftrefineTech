@@ -3,15 +3,20 @@ import styled from "styled-components";
 
 const Header = () => {
   const Header = styled.header`
-    height: 20vh;
+    height: 13rem;
     background-color: #f5f5f5;
   `;
 
-  const Title = styled.h1`
+  const Title = styled.p`
+    font-weight: 500;
     text-align: center;
     padding: 2rem 0;
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: #333;
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
   `;
 
   const Btns = styled.div`
