@@ -8,12 +8,15 @@ import SocialLinks from "./SocialLinks/SocialLinks";
 const DetailsContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin-bottom: 2rem;
 `;
 
 const Section = styled.div`
   margin-bottom: 2rem;
   padding: 2rem 4rem;
+
+  @media only screen and (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const BreakPoint = styled.div`
@@ -253,7 +256,7 @@ const Details = () => {
           id="title"
           value={data.name.title}
           onChange={(value) => handleInputChange("name", "title", value)}
-          width="10%"
+          width="10rem"
         />
         <Input
           type="text"
@@ -262,7 +265,7 @@ const Details = () => {
           value={data.name.name}
           onChange={(value) => handleInputChange("name", "name", value)}
           placeholder="name"
-          width="25%"
+          width="25rem"
         />
       </Section>
       <Section>
@@ -273,7 +276,7 @@ const Details = () => {
           id="subtitle"
           value={data.subtitle.title}
           onChange={(value) => handleInputChange("subtitle", "title", value)}
-          width="40%"
+          width="87.5%"
         />
       </Section>
       <Section>
@@ -285,7 +288,7 @@ const Details = () => {
               name="title"
               id="title"
               value={workItem.title}
-              width="20%"
+              width="30%"
               onChange={(value) =>
                 handleInputChange("work", "title", value, index)
               }
@@ -298,7 +301,7 @@ const Details = () => {
               onChange={(value) =>
                 handleInputChange("work", "project", value, index)
               }
-              width="30%"
+              width="25%"
               placeholder="project name"
             />
             <Input
@@ -309,7 +312,7 @@ const Details = () => {
               onChange={(value) =>
                 handleInputChange("work", "link", value, index)
               }
-              width="30%"
+              width="25%"
               placeholder="project link"
             />
             <BreakPoint />

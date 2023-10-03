@@ -412,15 +412,28 @@ const CategoryHeading = styled.div`
 
 const CategoryContainer = styled.div`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  // display: flex;
+  // flex-wrap: wrap;
+  // gap: 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 1rem;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 850px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .box {
     width: 24%;
     display: flex;
     align-items: center;
     padding: 1rem;
+    position: relative;
   }
 
   .checkbox-label__input {
@@ -470,6 +483,15 @@ const CategoryContainer = styled.div`
     margin-left: 2rem;
     padding: 1rem 2rem;
     font-size: 1.4rem;
+
+    @media screen and (max-width: 768px) {
+      padding: 1rem;
+    }
+
+    @media screen and (max-width: 450px) {
+      position: absolute;
+      left: 8rem;
+    }
   }
 
   .box:hover {
@@ -531,7 +553,7 @@ const Category = ({ skills, onSelectedSkillsChange }) => {
       <CategoryHeader>
         <Heading heading="Skills"></Heading>
         <SearchBar
-          placeholder="Search icons..."
+          placeholder="Search...."
           value={searchInput}
           onSearch={(value) => setSearchInput(value)}
           onClear={handleClearSearch}

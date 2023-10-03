@@ -6,15 +6,19 @@ const SearchContainer = styled.div`
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 8px;
-  width: 300px;
+  padding: 0.8rem;
+  width: 30rem;
+
+  @media only screen and (max-width: 768px) {
+    width: 20rem;
+  }
 `;
 
 const SearchInput = styled.input`
   flex: 1;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 1.2rem;
 `;
 
 const SearchIcon = styled.span`
@@ -22,6 +26,10 @@ const SearchIcon = styled.span`
   cursor: pointer;
   font-size: 1.8rem;
   display: ${(props) => (props.showSearchIcon ? "inline" : "none")};
+
+  @media only screen and (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const ClearIcon = styled.span`

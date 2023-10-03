@@ -19,16 +19,29 @@ const Button = styled.button`
     cursor: pointer;
     background-color: #333;
   }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    margin: 3rem auto;
+  }
 `;
 
 const ActionLogo = styled.div`
   font-size: 2rem;
   margin-right: 1rem;
   line-height: 0;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const ActionText = styled.p`
   font-size: 1.5rem;
+  @media only screen and (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const ActionButton = ({ onClick, icon, text }) => {

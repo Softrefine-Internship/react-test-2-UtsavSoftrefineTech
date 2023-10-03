@@ -5,15 +5,18 @@ import Input from "../Input/Input";
 const SocialContainer = styled.div`
   margin: 2rem;
   display: grid;
-  gap: 2rem;
+  row-gap: 2rem;
   grid-template-columns: 1fr 1fr;
+
+  @media only screen and (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Social = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin: 0 2rem;
+  // gap: 1rem;
 `;
 
 const Icon = styled.div`
@@ -43,7 +46,7 @@ const SocialLinks = (props) => {
                 name="title"
                 id="title"
                 placeholder={socialLink.placeholder}
-                width="80%"
+                width="100%"
                 value={socialLink.link}
                 onChange={(value) => props.onSocialLinkChange(index, value)}
               />

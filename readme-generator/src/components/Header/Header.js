@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const Header = () => {
   const Header = styled.header`
-    height: 13rem;
+    height: min-content;
+    padding-bottom: 2rem;
     background-color: #f5f5f5;
   `;
 
@@ -14,7 +15,7 @@ const Header = () => {
     font-size: 3rem;
     color: #333;
 
-    @media (max-width: 768px) {
+    @media only screen and (max-width: 768px) {
       font-size: 2.5rem;
     }
   `;
@@ -39,11 +40,19 @@ const Header = () => {
     border: 1px solid black;
     transition: all 0.3s ease-in-out;
 
+    @media only screen and (max-width: 450px) {
+      font-size: 1.2rem;
+      height: 3rem;
+      padding: 0 0.5rem;
+    }
+
     &:hover {
         background-color: #333;
         color: #f5f5f5;
         }
     }
+
+
   `;
 
   const [star, setStar] = useState(0);

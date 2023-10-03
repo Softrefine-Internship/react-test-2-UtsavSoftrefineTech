@@ -20,6 +20,12 @@ const ReadmePadWrapper = styled.div`
   font-family: Arial, sans-serif;
 `;
 
+const SocialLink = styled.img`
+  height: 3rem;
+  width: 3rem;
+  margin: 1rem 0.5rem 0 0.5rem;
+`;
+
 const ReadmePad = ({ toggleActionButtons }) => {
   const [data, setData] = useState({});
   const [skills, setSkills] = useState([]);
@@ -40,11 +46,12 @@ const ReadmePad = ({ toggleActionButtons }) => {
   # ${data.name ? data.name.title : ""}  ${data.name ? data.name.name : ""}
   ### ${data.subtitle ? data.subtitle.title : ""}
 
+  &nbsp;
   # About Me
   ---
   ---
   ${
-    data.work
+    data.work && data.work.length > 0
       ? data.work
           .map(
             (item) =>
@@ -56,26 +63,37 @@ const ReadmePad = ({ toggleActionButtons }) => {
       : ""
   }
 
+  &nbsp;
   # Skills
   ---
   ---
-  ## ${skills.map((skill) => `${skill || ""},`).join(" ")}
-
-  # Social Links
-  ---
-  ---
   ## ${
-    socialLinks
-      ? socialLinks
-          .map((link) => `[${link.title || ""}](${link.link || ""})`)
-          .join("&nbsp; &nbsp;")
+    skills && skills.length > 0
+      ? skills.map((skill) => `${skill || ""},`).join(" ")
       : ""
   }
 `;
 
+  const finalMarkdown =
+    markdown +
+    `
+  # Social Links
+  ---
+  ---
+  ## ${
+    socialLinks && socialLinks.length > 0
+      ? socialLinks
+          .map((link) =>
+            link.link !== "" ? `[${link.title || ""}](${link.link || ""})` : ""
+          )
+          .join("&nbsp; &nbsp;")
+      : ""
+  }
+  `;
+
   const handleCopyMarkdown = () => {
     const textArea = document.createElement("textarea");
-    textArea.value = markdown;
+    textArea.value = finalMarkdown;
 
     document.body.appendChild(textArea);
 
@@ -88,7 +106,7 @@ const ReadmePad = ({ toggleActionButtons }) => {
   };
 
   const handleDownloadMarkdown = () => {
-    const blob = new Blob([markdown], { type: "text/plain" });
+    const blob = new Blob([finalMarkdown], { type: "text/plain" });
 
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -123,6 +141,15 @@ const ReadmePad = ({ toggleActionButtons }) => {
       </ActionButtonWrapper>
       <ReadmePadWrapper>
         <Markdown>{markdown}</Markdown>
+        &nbsp;
+        <h1>Social Links</h1>
+        <hr />
+        <hr />
+        {socialLinks.map((link) => (
+          <a href={link.link}>
+            <SocialLink src={link.src} alt={link.title} />
+          </a>
+        ))}
       </ReadmePadWrapper>
     </>
   );

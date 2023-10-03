@@ -6,12 +6,14 @@ const GlobalStyle = createGlobalStyle`
   *::after {
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 
   html {
-    box-sizing: border-box;
     font-size: 62.5%;
+    @media only screen and (max-width: 768px) {
+      font-size: 50%;
+    }
   }
 
   body {
