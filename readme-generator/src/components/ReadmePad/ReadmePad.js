@@ -12,10 +12,11 @@ const ActionButtonWrapper = styled.div`
 const ReadmePadWrapper = styled.div`
   height: min-content;
   margin: 0 5rem;
+  line-height: 2;
   background-color: #f3f3f3;
   border-radius: 0.5rem;
   border: 1px solid black;
-  padding: 3rem;
+  padding: 3rem 6rem;
   font-family: Arial, sans-serif;
 `;
 
@@ -35,29 +36,39 @@ const ReadmePad = ({ toggleActionButtons }) => {
   }, []);
 
   const markdown = `
-  #  ${data.name ? data.name.title : ""}  ${data.name ? data.name.name : ""}
-  ## ${data.subtitle ? data.subtitle.title : ""}
 
-  ### Work
+  # ${data.name ? data.name.title : ""}  ${data.name ? data.name.name : ""}
+  ### ${data.subtitle ? data.subtitle.title : ""}
+
+  # About Me
+  ---
+  ---
   ${
     data.work
       ? data.work
-          .map((item) => `- **${item.title}**: [${item.project}](${item.link})`)
+          .map(
+            (item) =>
+              `## ${item.title || ""} [${item.project || ""}](${
+                item.link || ""
+              })`
+          )
           .join("\n")
       : ""
   }
 
-  ### Skills
-  ${skills.map((skill) => `- ${skill}`).join("\n")}
+  # Skills
+  ---
+  ---
+  ## ${skills.map((skill) => `${skill || ""},`).join(" ")}
 
-  ### Social Links
-  ${
+  # Social Links
+  ---
+  ---
+  ## ${
     socialLinks
       ? socialLinks
-          .map(
-            (link) => `- **${link.title}**: [${link.placeholder}](${link.link})`
-          )
-          .join("\n")
+          .map((link) => `[${link.title || ""}](${link.link || ""})`)
+          .join("&nbsp; &nbsp;")
       : ""
   }
 `;
