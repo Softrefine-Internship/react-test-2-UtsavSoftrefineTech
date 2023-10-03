@@ -1,101 +1,117 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Markdown from "react-markdown";
 import styled from "styled-components";
+import ActionButton from "../ActionButton/ActionButton";
+
+const ActionButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const ReadmePadWrapper = styled.div`
-  height: 50rem;
+  height: min-content;
   margin: 0 5rem;
   background-color: #f3f3f3;
   border-radius: 0.5rem;
   border: 1px solid black;
-  padding: 1rem;
+  padding: 3rem;
   font-family: Arial, sans-serif;
 `;
 
-const DownloadButton = styled.button`
-  margin-top: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-`;
-
-const ReadmePad = () => {
+const ReadmePad = ({ toggleActionButtons }) => {
   const [data, setData] = useState({});
-  const [readmeContent, setReadmeContent] = useState("");
+  const [skills, setSkills] = useState([]);
+  const [socialLinks, setSocialLinks] = useState([]);
 
   useEffect(() => {
-    // Function to retrieve data from Local Storage
-    const getDataFromLocalStorage = () => {
-      const storedData = localStorage.getItem("data");
-      if (storedData) {
-        setData(JSON.parse(storedData));
-      }
-    };
+    const localData = JSON.parse(localStorage.getItem("data"));
+    const localSkills = JSON.parse(localStorage.getItem("skills"));
+    const localSocialLinks = JSON.parse(localStorage.getItem("socialLinks"));
 
-    getDataFromLocalStorage(); // Call function to retrieve data from Local Storage
+    setData(localData);
+    setSkills(localSkills);
+    setSocialLinks(localSocialLinks);
   }, []);
 
-  useEffect(() => {
-    // Function to generate README content
-    const generateReadmeContent = (data) => {
-      if (!data || !data.name) {
-        return "";
-      }
+  const markdown = `
+  #  ${data.name ? data.name.title : ""}  ${data.name ? data.name.name : ""}
+  ## ${data.subtitle ? data.subtitle.title : ""}
 
-      const { name, subtitle, work, socialLinks } = data;
+  ### Work
+  ${
+    data.work
+      ? data.work
+          .map((item) => `- **${item.title}**: [${item.project}](${item.link})`)
+          .join("\n")
+      : ""
+  }
 
-      const generateWorkSection = () => {
-        return work
-          .map((item) => {
-            return `${item.title} ${
-              item.project ? `[${item.project}](${item.link})` : ""
-            }`;
-          })
-          .join("\n");
-      };
+  ### Skills
+  ${skills.map((skill) => `- ${skill}`).join("\n")}
 
-      const generateSocialLinksSection = () => {
-        return socialLinks
-          .map((link) => {
-            return `[![${link.title}](${link.src})](${link.link})`;
-          })
-          .join(" ");
-      };
+  ### Social Links
+  ${
+    socialLinks
+      ? socialLinks
+          .map(
+            (link) => `- **${link.title}**: [${link.placeholder}](${link.link})`
+          )
+          .join("\n")
+      : ""
+  }
+`;
 
-      const readmeContent = `
-# ${name.title} ${name.name}
-${subtitle.title}
+  const handleCopyMarkdown = () => {
+    const textArea = document.createElement("textarea");
+    textArea.value = markdown;
 
-## Work
-${generateWorkSection()}
+    document.body.appendChild(textArea);
 
-## Social Links
-${generateSocialLinksSection()}
-  `;
+    textArea.select();
+    document.execCommand("copy");
 
-      return readmeContent;
-    };
+    document.body.removeChild(textArea);
 
-    generateReadmeContent(data); // Call function to generate README content
-  }, [data]);
+    alert("Markdown content copied to clipboard!");
+  };
 
-  // const handleDownload = () => {
-  //   const element = document.createElement("a");
-  //   const file = new Blob([readmeContent], { type: "text/markdown" });
-  //   element.href = URL.createObjectURL(file);
-  //   element.download = "README.md";
-  //   document.body.appendChild(element);
-  //   element.click();
-  // };
+  const handleDownloadMarkdown = () => {
+    const blob = new Blob([markdown], { type: "text/plain" });
+
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "readme.md";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+  };
 
   return (
     <>
+      <ActionButtonWrapper>
+        <ActionButton
+          icon="arrow-back-outline"
+          text="back to edit"
+          onClick={toggleActionButtons}
+        />
+        <ActionButton
+          onClick={handleCopyMarkdown}
+          icon="copy-outline"
+          text="copy markdown"
+        />
+        <ActionButton
+          onClick={handleDownloadMarkdown}
+          icon="download-outline"
+          text="download readme.md"
+        />
+      </ActionButtonWrapper>
       <ReadmePadWrapper>
-        {readmeContent && (
-          <div dangerouslySetInnerHTML={{ __html: readmeContent }} />
-        )}
+        <Markdown>{markdown}</Markdown>
       </ReadmePadWrapper>
     </>
   );

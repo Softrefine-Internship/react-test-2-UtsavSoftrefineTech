@@ -481,9 +481,9 @@ const CategoryContainer = styled.div`
   }
 `;
 
-const Category = ({ onSelectedSkillsChange }) => {
+const Category = ({ skills, onSelectedSkillsChange }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState(skills);
 
   const filteredSkills = Object.keys(categorizedSkills).reduce(
     (result, categoryKey) => {
@@ -514,6 +514,11 @@ const Category = ({ onSelectedSkillsChange }) => {
     } else {
       setSelectedSkills((prevSelectedSkills) => [...prevSelectedSkills, skill]);
     }
+  };
+
+  // Check if a skill should be checked based on the selectedSkills array
+  const isSkillChecked = (skill) => {
+    return selectedSkills.includes(skill);
   };
 
   useEffect(() => {
@@ -548,6 +553,7 @@ const Category = ({ onSelectedSkillsChange }) => {
                     id={skill}
                     type="checkbox"
                     className="checkbox-label__input"
+                    checked={isSkillChecked(skill)}
                     onChange={() => handleCheckboxChange(skill)}
                   />
                   <span className="checkbox-label__control" />

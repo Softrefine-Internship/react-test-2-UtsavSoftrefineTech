@@ -29,24 +29,27 @@ const SocialLinks = (props) => {
   return (
     <>
       <SocialContainer>
-        {socialLinks.map((socialLink, index) => (
-          <Social key={socialLink.title}>
-            <Icon>
-              <img
-                src={socialLink.src}
-                alt={socialLink.placeholder.split(" ")[0]}
+        {socialLinks.map((socialLink, index) => {
+          return (
+            <Social key={socialLink.title}>
+              <Icon>
+                <img
+                  src={socialLink.src}
+                  alt={socialLink.placeholder.split(" ")[0]}
+                />
+              </Icon>
+              <Input
+                type="text"
+                name="title"
+                id="title"
+                placeholder={socialLink.placeholder}
+                width="80%"
+                value={socialLink.link}
+                onChange={(value) => props.onSocialLinkChange(index, value)}
               />
-            </Icon>
-            <Input
-              type="text"
-              name="title"
-              id="title"
-              placeholder={socialLink.placeholder}
-              width="80%"
-              onChange={(value) => props.onSocialLinkChange(index, value)}
-            />
-          </Social>
-        ))}
+            </Social>
+          );
+        })}
       </SocialContainer>
     </>
   );

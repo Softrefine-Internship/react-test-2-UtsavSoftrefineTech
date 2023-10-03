@@ -45,153 +45,6 @@ const Details = () => {
             { title: "📄 Know about my experiences", resume: "" },
             { title: "⚡ Fun fact", fact: "" },
           ],
-          skills: [],
-          socialLinks: [
-            {
-              title: "s1",
-              placeholder: "github username",
-              link: "",
-              src: "https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png",
-            },
-            {
-              title: "s2",
-              placeholder: "dev.to username",
-              link: "",
-              src: "https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/84_Dev-512.png",
-            },
-            {
-              title: "s3",
-              placeholder: "codesandbox username",
-              link: "",
-              src: "https://cdn3.iconfinder.com/data/icons/feather-5/24/codesandbox-512.png",
-            },
-            {
-              title: "s4",
-              placeholder: "linkedin username",
-              link: "",
-              src: "https://cdn-icons-png.flaticon.com/512/174/174857.png",
-            },
-            {
-              title: "s5",
-              placeholder: "facebook username",
-              link: "",
-              src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
-            },
-            {
-              title: "s7",
-              placeholder: "dribble username",
-              link: "",
-              src: "https://cdn-icons-png.flaticon.com/512/408/408743.png",
-            },
-            {
-              title: "s8",
-              placeholder: "hashnode username (with @)",
-              link: "",
-              src: "https://iconape.com/wp-content/png_logo_vector/cib-hashnode.png",
-            },
-            {
-              title: "s9",
-              placeholder: "youtube channel name",
-              link: "",
-              src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png",
-            },
-            {
-              title: "s10",
-              placeholder: "hackerrank username",
-              link: "",
-              src: "https://cdn.iconscout.com/icon/free/png-256/free-hackerrank-3628233-3031053.png",
-            },
-            {
-              title: "s11",
-              placeholder: "leetcode username",
-              link: "",
-              src: "https://www.svgrepo.com/show/306328/leetcode.svg",
-            },
-            {
-              title: "s12",
-              placeholder: "hackerearth username (with @)",
-              link: "",
-              src: "https://static-00.iconduck.com/assets.00/hackerearth-icon-444x512-0heomwse.png",
-            },
-            {
-              title: "s13",
-              placeholder: "Discord invite (only code)",
-              link: "",
-              src: "https://cdn-icons-png.flaticon.com/512/3670/3670157.png",
-            },
-            {
-              title: "s14",
-              placeholder: "twitter username",
-              link: "",
-              src: "https://w7.pngwing.com/pngs/515/1/png-transparent-twitter-logo-computer-icons-logo-twitter-icon-computer-wallpaper-monochrome-bird-thumbnail.png",
-            },
-            {
-              title: "s15",
-              placeholder: "codepen username",
-              link: "",
-              src: "https://cdn.icon-icons.com/icons2/1906/PNG/512/iconfinder-codepen-4550862_121336.png",
-            },
-            {
-              title: "s16",
-              placeholder: "stackoverflow user ID",
-              link: "",
-              src: "https://cdn-icons-png.flaticon.com/512/2111/2111690.png",
-            },
-            {
-              title: "s17",
-              placeholder: "instagram username",
-              link: "",
-              src: "https://cdn-icons-png.flaticon.com/512/1384/1384031.png",
-            },
-            {
-              title: "s18",
-              placeholder: "kaggle username",
-              link: "",
-              src: "https://cdn.iconscout.com/icon/free/png-256/free-kaggle-3628281-3031974.png",
-            },
-            {
-              title: "s19",
-              placeholder: "behance username",
-              link: "",
-              src: "https://cdn-icons-png.flaticon.com/512/733/733594.png",
-            },
-            {
-              title: "s20",
-              placeholder: "medium username (with @)",
-              link: "",
-              src: "https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png",
-            },
-            {
-              title: "s21",
-              placeholder: "codechef username",
-              link: "",
-              src: "https://static-00.iconduck.com/assets.00/codechef-icon-380x512-r1v87w22.png",
-            },
-            {
-              title: "s22",
-              placeholder: "codeforces username",
-              link: "",
-              src: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/codeforces-512.png",
-            },
-            {
-              title: "s23",
-              placeholder: "topcoder username",
-              link: "",
-              src: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/topcoder-512.png",
-            },
-            {
-              title: "s24",
-              placeholder: "GFG (<username>/profile)",
-              link: "",
-              src: "https://static-00.iconduck.com/assets.00/geeksforgeeks-icon-512x264-y71dixbv.png",
-            },
-            {
-              title: "s25",
-              placeholder: "RSS feed URL",
-              link: "",
-              src: "https://cdn-icons-png.flaticon.com/512/3670/3670157.png",
-            },
-          ],
         };
   });
 
@@ -208,33 +61,187 @@ const Details = () => {
     });
   };
 
-  const handleSocialLinkChange = (index, value) => {
-    setData((prevData) => {
-      const newSocialLinks = [...prevData.socialLinks];
-      newSocialLinks[index].link = value;
-      return { ...prevData, socialLinks: newSocialLinks };
-    });
-  };
+  const [skills, setSkills] = useState(() => {
+    const storedSkills = localStorage.getItem("skills");
+    console.log("---------------", storedSkills);
+    return storedSkills ? JSON.parse(storedSkills) : [];
+  });
 
   const handleSelectedSkillsChange = (selectedSkills) => {
-    setData((prevData) => {
-      return { ...prevData, skills: selectedSkills };
-    });
+    setSkills(selectedSkills);
   };
 
-  // useEffect(() => {
-  //   const storedData = localStorage.getItem("data");
-  //   if (storedData) {
-  //     setData(JSON.parse(storedData));
-  //   } else {
-  //     localStorage.setItem("data", JSON.stringify(data));
-  //   }
-  //   console.log("storedData", JSON.parse(storedData));
-  // }, []);
+  const [socialLinks, setSocialLinks] = useState(() => {
+    const storedSocialLinks = localStorage.getItem("socialLinks");
+    return storedSocialLinks
+      ? JSON.parse(storedSocialLinks)
+      : [
+          {
+            title: "GitHub",
+            placeholder: "github username",
+            link: "",
+            src: "https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png",
+          },
+          {
+            title: "Dev.to",
+            placeholder: "dev.to username",
+            link: "",
+            src: "https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/84_Dev-512.png",
+          },
+          {
+            title: "CodeSandbox",
+            placeholder: "codesandbox username",
+            link: "",
+            src: "https://cdn3.iconfinder.com/data/icons/feather-5/24/codesandbox-512.png",
+          },
+          {
+            title: "LinkedIn",
+            placeholder: "linkedin username",
+            link: "",
+            src: "https://cdn-icons-png.flaticon.com/512/174/174857.png",
+          },
+          {
+            title: "Facebook",
+            placeholder: "facebook username",
+            link: "",
+            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
+          },
+          {
+            title: "Dribbble",
+            placeholder: "dribble username",
+            link: "",
+            src: "https://cdn-icons-png.flaticon.com/512/408/408743.png",
+          },
+          {
+            title: "Hashnode",
+            placeholder: "hashnode username (with @)",
+            link: "",
+            src: "https://iconape.com/wp-content/png_logo_vector/cib-hashnode.png",
+          },
+          {
+            title: "YouTube",
+            placeholder: "youtube channel name",
+            link: "",
+            src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png",
+          },
+          {
+            title: "Hackerrank",
+            placeholder: "hackerrank username",
+            link: "",
+            src: "https://cdn.iconscout.com/icon/free/png-256/free-hackerrank-3628233-3031053.png",
+          },
+          {
+            title: "Leetcode",
+            placeholder: "leetcode username",
+            link: "",
+            src: "https://www.svgrepo.com/show/306328/leetcode.svg",
+          },
+          {
+            title: "HackerEarth",
+            placeholder: "hackerearth username (with @)",
+            link: "",
+            src: "https://static-00.iconduck.com/assets.00/hackerearth-icon-444x512-0heomwse.png",
+          },
+          {
+            title: "Discord",
+            placeholder: "Discord invite (only code)",
+            link: "",
+            src: "https://cdn-icons-png.flaticon.com/512/3670/3670157.png",
+          },
+          {
+            title: "Twitter",
+            placeholder: "twitter username",
+            link: "",
+            src: "https://w7.pngwing.com/pngs/515/1/png-transparent-twitter-logo-computer-icons-logo-twitter-icon-computer-wallpaper-monochrome-bird-thumbnail.png",
+          },
+          {
+            title: "Codepen",
+            placeholder: "codepen username",
+            link: "",
+            src: "https://cdn.icon-icons.com/icons2/1906/PNG/512/iconfinder-codepen-4550862_121336.png",
+          },
+          {
+            title: "StackOverflow",
+            placeholder: "stackoverflow user ID",
+            link: "",
+            src: "https://cdn-icons-png.flaticon.com/512/2111/2111690.png",
+          },
+          {
+            title: "Instagram",
+            placeholder: "instagram username",
+            link: "",
+            src: "https://cdn-icons-png.flaticon.com/512/1384/1384031.png",
+          },
+          {
+            title: "Kaggle",
+            placeholder: "kaggle username",
+            link: "",
+            src: "https://cdn.iconscout.com/icon/free/png-256/free-kaggle-3628281-3031974.png",
+          },
+          {
+            title: "Behance",
+            placeholder: "behance username",
+            link: "",
+            src: "https://cdn-icons-png.flaticon.com/512/733/733594.png",
+          },
+          {
+            title: "Medium",
+            placeholder: "medium username (with @)",
+            link: "",
+            src: "https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png",
+          },
+          {
+            title: "Codechef",
+            placeholder: "codechef username",
+            link: "",
+            src: "https://static-00.iconduck.com/assets.00/codechef-icon-380x512-r1v87w22.png",
+          },
+          {
+            title: "Codeforces",
+            placeholder: "codeforces username",
+            link: "",
+            src: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/codeforces-512.png",
+          },
+          {
+            title: "Topcoder",
+            placeholder: "topcoder username",
+            link: "",
+            src: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/topcoder-512.png",
+          },
+          {
+            title: "GeeksforGeeks",
+            placeholder: "GFG (<username>/profile)",
+            link: "",
+            src: "https://static-00.iconduck.com/assets.00/geeksforgeeks-icon-512x264-y71dixbv.png",
+          },
+          {
+            title: "Reddit",
+            placeholder: "RSS feed URL",
+            link: "",
+            src: "https://cdn-icons-png.flaticon.com/512/3670/3670157.png",
+          },
+        ];
+  });
+
+  const handleSocialLinkChange = (index, value) => {
+    setSocialLinks((prevData) => {
+      const newData = [...prevData];
+      newData[index].link = value;
+      return newData;
+    });
+  };
 
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
+
+  useEffect(() => {
+    localStorage.setItem("skills", JSON.stringify(skills));
+  }, [skills]);
+
+  useEffect(() => {
+    localStorage.setItem("socialLinks", JSON.stringify(socialLinks));
+  }, [socialLinks]);
 
   return (
     <DetailsContainer>
@@ -310,12 +317,15 @@ const Details = () => {
         ))}
       </Section>
       <Section>
-        <Category onSelectedSkillsChange={handleSelectedSkillsChange} />
+        <Category
+          skills={skills}
+          onSelectedSkillsChange={handleSelectedSkillsChange}
+        />
       </Section>
       <Section>
         <Heading heading="Social"></Heading>
         <SocialLinks
-          socialLinks={data.socialLinks}
+          socialLinks={socialLinks}
           onSocialLinkChange={handleSocialLinkChange}
         />
       </Section>
