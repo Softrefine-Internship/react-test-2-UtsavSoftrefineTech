@@ -6,6 +6,8 @@ const Header = () => {
     height: min-content;
     padding-bottom: 2rem;
     background-color: #f5f5f5;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
   `;
 
   const Title = styled.p`

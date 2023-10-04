@@ -428,6 +428,11 @@ const CategoryContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
+  // @media screen and (max-width: 400px) {
+  //   grid-template-columns: repeat(1, 1fr);
+  //   place-items: center;
+  // }
+
   .box {
     width: 24%;
     display: flex;
@@ -480,17 +485,20 @@ const CategoryContainer = styled.div`
     align-items: center;
     background-color: #333;
     color: #fff;
-    margin-left: 2rem;
+    margin-left: 1rem;
     padding: 1rem 2rem;
     font-size: 1.4rem;
 
     @media screen and (max-width: 768px) {
       padding: 1rem;
+      left: 2rem;
+      margin-left: 0.5rem;
     }
 
-    @media screen and (max-width: 450px) {
-      position: absolute;
-      left: 8rem;
+    @media screen and (max-width: 400px) {
+      font-size: 1rem;
+      margin-left: 0;
+      padding: 0.5rem;
     }
   }
 

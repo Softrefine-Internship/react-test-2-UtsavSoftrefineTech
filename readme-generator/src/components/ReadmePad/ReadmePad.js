@@ -11,13 +11,17 @@ const ActionButtonWrapper = styled.div`
 
 const ReadmePadWrapper = styled.div`
   height: min-content;
-  margin: 0 5rem;
+  margin: 0 5rem 2rem 5rem;
   line-height: 2;
   background-color: #f3f3f3;
   border-radius: 0.5rem;
   border: 1px solid black;
   padding: 3rem 6rem;
   font-family: Arial, sans-serif;
+
+  @media only screen and (max-width: 768px) {
+    padding: 2rem 3rem;
+  }
 `;
 
 const SocialLink = styled.img`

@@ -11,6 +11,7 @@ const DetailsContainer = styled.div`
 `;
 
 const Section = styled.div`
+  width: 100%;
   margin-bottom: 2rem;
   padding: 2rem 4rem;
 
@@ -256,7 +257,7 @@ const Details = () => {
           id="title"
           value={data.name.title}
           onChange={(value) => handleInputChange("name", "title", value)}
-          width="10rem"
+          width="20%"
         />
         <Input
           type="text"
@@ -265,7 +266,7 @@ const Details = () => {
           value={data.name.name}
           onChange={(value) => handleInputChange("name", "name", value)}
           placeholder="name"
-          width="25rem"
+          width="40%"
         />
       </Section>
       <Section>
@@ -276,7 +277,7 @@ const Details = () => {
           id="subtitle"
           value={data.subtitle.title}
           onChange={(value) => handleInputChange("subtitle", "title", value)}
-          width="87.5%"
+          width="70%"
         />
       </Section>
       <Section>

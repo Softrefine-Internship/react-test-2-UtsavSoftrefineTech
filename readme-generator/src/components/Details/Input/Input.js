@@ -16,6 +16,10 @@ const InputField = styled.input`
   -moz-appearance: none;
   appearance: none;
   border-bottom: 2px solid black;
+
+  @media only screen and (max-width: 450px) {
+    margin-right: 1rem;
+  }
 `;
 const Input = (props) => {
   // This is the function that will be called when the input value changes
