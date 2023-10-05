@@ -8,7 +8,6 @@ const Button = styled.button`
   height: 3.5rem;
   font-size: 1.5rem;
   padding: 0 2rem;
-  margin: 5rem auto;
   border-radius: 4px;
   border: none;
   border: 0.2rem solid black;
@@ -21,9 +20,9 @@ const Button = styled.button`
   }
 
   @media only screen and (max-width: 768px) {
+    height: 3rem;
     font-size: 1rem;
     padding: 0 0.5rem;
-    margin: 3rem auto;
   }
 `;
 
@@ -33,14 +32,14 @@ const ActionLogo = styled.div`
   line-height: 0;
 
   @media only screen and (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 `;
 
 const ActionText = styled.p`
   font-size: 1.5rem;
   @media only screen and (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 `;
 

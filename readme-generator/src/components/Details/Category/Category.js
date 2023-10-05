@@ -434,7 +434,6 @@ const CategoryContainer = styled.div`
   // }
 
   .box {
-    width: 24%;
     display: flex;
     align-items: center;
     padding: 1rem;

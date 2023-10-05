@@ -77,160 +77,191 @@ const Details = () => {
 
   const [socialLinks, setSocialLinks] = useState(() => {
     const storedSocialLinks = localStorage.getItem("socialLinks");
+
     return storedSocialLinks
       ? JSON.parse(storedSocialLinks)
       : [
           {
             title: "GitHub",
             placeholder: "github username",
-            link: "",
+            link: "https://github.com/",
             src: "https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png",
+            value: "",
           },
           {
             title: "Dev.to",
             placeholder: "dev.to username",
-            link: "",
+            link: "https://dev.to/",
             src: "https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/84_Dev-512.png",
+            value: "",
           },
           {
             title: "CodeSandbox",
             placeholder: "codesandbox username",
-            link: "",
+            link: "https://codesandbox.io/",
             src: "https://cdn3.iconfinder.com/data/icons/feather-5/24/codesandbox-512.png",
+            value: "",
           },
           {
             title: "LinkedIn",
             placeholder: "linkedin username",
-            link: "",
+            link: "https://in.linkedin.com/",
             src: "https://cdn-icons-png.flaticon.com/512/174/174857.png",
+            value: "",
           },
           {
             title: "Facebook",
             placeholder: "facebook username",
-            link: "",
+            link: "https://www.facebook.com/",
             src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
+            value: "",
           },
           {
             title: "Dribbble",
             placeholder: "dribble username",
-            link: "",
+            link: "https://dribbble.com/",
             src: "https://cdn-icons-png.flaticon.com/512/408/408743.png",
+            value: "",
           },
           {
             title: "Hashnode",
             placeholder: "hashnode username (with @)",
-            link: "",
+            link: "https://hashnode.com/",
             src: "https://iconape.com/wp-content/png_logo_vector/cib-hashnode.png",
+            value: "",
           },
           {
             title: "YouTube",
             placeholder: "youtube channel name",
-            link: "",
+            link: "https://www.youtube.com/",
             src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png",
+            value: "",
           },
           {
             title: "Hackerrank",
             placeholder: "hackerrank username",
-            link: "",
+            link: "https://www.hackerrank.com/",
             src: "https://cdn.iconscout.com/icon/free/png-256/free-hackerrank-3628233-3031053.png",
+            value: "",
           },
           {
             title: "Leetcode",
             placeholder: "leetcode username",
-            link: "",
+            link: "https://leetcode.com/",
             src: "https://www.svgrepo.com/show/306328/leetcode.svg",
+            value: "",
           },
           {
             title: "HackerEarth",
             placeholder: "hackerearth username (with @)",
-            link: "",
+            link: "https://www.hackerearth.com/",
             src: "https://static-00.iconduck.com/assets.00/hackerearth-icon-444x512-0heomwse.png",
+            value: "",
           },
           {
             title: "Discord",
             placeholder: "Discord invite (only code)",
-            link: "",
+            link: "https://discord.com/",
             src: "https://cdn-icons-png.flaticon.com/512/3670/3670157.png",
+            value: "",
           },
           {
             title: "Twitter",
             placeholder: "twitter username",
-            link: "",
+            link: "https://twitter.com/",
             src: "https://w7.pngwing.com/pngs/515/1/png-transparent-twitter-logo-computer-icons-logo-twitter-icon-computer-wallpaper-monochrome-bird-thumbnail.png",
+            value: "",
           },
           {
             title: "Codepen",
             placeholder: "codepen username",
-            link: "",
+            link: "https://codepen.io/",
             src: "https://cdn.icon-icons.com/icons2/1906/PNG/512/iconfinder-codepen-4550862_121336.png",
+            value: "",
           },
           {
             title: "StackOverflow",
             placeholder: "stackoverflow user ID",
-            link: "",
+            link: "https://stackoverflow.com/",
             src: "https://cdn-icons-png.flaticon.com/512/2111/2111690.png",
+            value: "",
           },
           {
             title: "Instagram",
             placeholder: "instagram username",
-            link: "",
+            link: "https://www.instagram.com/",
             src: "https://cdn-icons-png.flaticon.com/512/1384/1384031.png",
+            value: "",
           },
           {
             title: "Kaggle",
             placeholder: "kaggle username",
-            link: "",
+            link: "https://www.kaggle.com/",
             src: "https://cdn.iconscout.com/icon/free/png-256/free-kaggle-3628281-3031974.png",
+            value: "",
           },
           {
             title: "Behance",
             placeholder: "behance username",
-            link: "",
+            link: "https://www.behance.net/",
             src: "https://cdn-icons-png.flaticon.com/512/733/733594.png",
+            value: "",
           },
           {
             title: "Medium",
             placeholder: "medium username (with @)",
-            link: "",
+            link: "https://medium.com/",
             src: "https://cdn4.iconfinder.com/data/icons/social-media-2210/24/Medium-512.png",
+            value: "",
           },
           {
             title: "Codechef",
             placeholder: "codechef username",
-            link: "",
+            link: "https://www.codechef.com/",
             src: "https://static-00.iconduck.com/assets.00/codechef-icon-380x512-r1v87w22.png",
+            value: "",
           },
           {
             title: "Codeforces",
             placeholder: "codeforces username",
-            link: "",
+            link: "https://codeforces.com/",
             src: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/codeforces-512.png",
+            value: "",
           },
           {
             title: "Topcoder",
             placeholder: "topcoder username",
-            link: "",
+            link: "https://www.topcoder.com/",
             src: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/topcoder-512.png",
+            value: "",
           },
           {
             title: "GeeksforGeeks",
             placeholder: "GFG (<username>/profile)",
-            link: "",
+            link: "https://www.geeksforgeeks.org/",
             src: "https://static-00.iconduck.com/assets.00/geeksforgeeks-icon-512x264-y71dixbv.png",
+            value: "",
           },
           {
             title: "Reddit",
             placeholder: "RSS feed URL",
-            link: "",
+            link: "https://rss.com/",
             src: "https://cdn-icons-png.flaticon.com/512/3670/3670157.png",
+            value: "",
           },
         ];
   });
 
+  for (const platform of socialLinks) {
+    platform.value
+      ? (platform.finallink = platform.link + platform.value)
+      : (platform.finallink = "");
+  }
+
   const handleSocialLinkChange = (index, value) => {
     setSocialLinks((prevData) => {
       const newData = [...prevData];
-      newData[index].link = value;
+      newData[index].value = value;
       return newData;
     });
   };
@@ -294,6 +325,7 @@ const Details = () => {
                 handleInputChange("work", "title", value, index)
               }
             />
+
             <Input
               type="text"
               name="projectName"
@@ -302,20 +334,23 @@ const Details = () => {
               onChange={(value) =>
                 handleInputChange("work", "project", value, index)
               }
-              width="25%"
+              width={index < 3 ? "25%" : "40%"}
               placeholder="project name"
             />
-            <Input
-              type="text"
-              name="projectLink"
-              id="projectLink"
-              value={workItem.link}
-              onChange={(value) =>
-                handleInputChange("work", "link", value, index)
-              }
-              width="25%"
-              placeholder="project link"
-            />
+            {index < 3 && (
+              <Input
+                type="text"
+                name="projectLink"
+                id="projectLink"
+                value={workItem.link}
+                onChange={(value) =>
+                  handleInputChange("work", "link", value, index)
+                }
+                width="25%"
+                placeholder="project link"
+              />
+            )}
+
             <BreakPoint />
           </div>
         ))}
