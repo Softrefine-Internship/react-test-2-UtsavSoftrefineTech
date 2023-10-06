@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 
 const Button = styled.button`
   display: flex;
@@ -24,6 +24,42 @@ const Button = styled.button`
     font-size: 1rem;
     padding: 0 0.5rem;
   }
+
+  ${(props) =>
+    props.animation === "copy" &&
+    css`
+      animation: copyAnimation 0.5s ease-in-out;
+    `}
+
+  ${(props) =>
+    props.animation === "download" &&
+    css`
+      animation: downloadAnimation 0.5s ease-in-out;
+    `}
+
+  @keyframes copyAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes downloadAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const ActionLogo = styled.div`
@@ -44,8 +80,28 @@ const ActionText = styled.p`
 `;
 
 const ActionButton = ({ onClick, icon, text }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    onClick();
+
+    // Reset the animation after a short delay (0.5s in this case)
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 500);
+  };
+
+  let animation = "";
+
+  if (text === "copy markdown") {
+    animation = "copy";
+  } else if (text === "download readme.md") {
+    animation = "download";
+  }
+
   return (
-    <Button onClick={onClick}>
+    <Button onClick={handleClick} animation={isClicked ? animation : ""}>
       <ActionLogo>
         <ion-icon name={icon}></ion-icon>
       </ActionLogo>

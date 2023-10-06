@@ -34,20 +34,59 @@ const Details = () => {
           name: { title: "Hi 👋, I'm", name: "" },
           subtitle: { title: "A passionate frontend developer from India" },
           work: [
-            { title: "🔭 I’m currently working on", project: "", link: "" },
+            {
+              title: "🔭 I’m currently working on",
+              project: "",
+              link: "",
+              placeholder: "project name",
+            },
             {
               title: "👯 I’m looking to collaborate on",
               project: "",
               link: "",
+              placeholder: "project name",
             },
-            { title: "🤝 I’m looking for help with", project: "", link: "" },
-            { title: "🌱 I’m currently learning", skills: "" },
-            { title: "💬 Ask me about", topics: "" },
-            { title: "📫 How to reach me", email: "" },
-            { title: "👨‍💻 All of my projects are available at", portfolio: "" },
-            { title: "📝 I regularly write articles on", platforms: "" },
-            { title: "📄 Know about my experiences", resume: "" },
-            { title: "⚡ Fun fact", fact: "" },
+            {
+              title: "🤝 I’m looking for help with",
+              project: "",
+              link: "",
+              placeholder: "project name",
+            },
+            {
+              title: "🌱 I’m currently learning",
+              skills: "",
+              placeholder: "Framework course etc.",
+            },
+            {
+              title: "💬 Ask me about",
+              topics: "",
+              placeholder: "react, vue and gsap",
+            },
+            {
+              title: "📫 How to reach me",
+              email: "",
+              placeholder: "example@gmail.com",
+            },
+            {
+              title: "👨‍💻 All of my projects are available at",
+              portfolio: "",
+              placeholder: "portfolio link",
+            },
+            {
+              title: "📝 I regularly write articles on",
+              platforms: "",
+              placeholder: "blog link",
+            },
+            {
+              title: "📄 Know about my experiences",
+              resume: "",
+              placeholder: "resume link",
+            },
+            {
+              title: "⚡ Fun fact",
+              fact: "",
+              placeholder: "I think I am funny",
+            },
           ],
         };
   });
@@ -278,6 +317,10 @@ const Details = () => {
     localStorage.setItem("socialLinks", JSON.stringify(socialLinks));
   }, [socialLinks]);
 
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(data));
+  }, []);
+
   return (
     <DetailsContainer>
       <Section>
@@ -335,7 +378,7 @@ const Details = () => {
                 handleInputChange("work", "project", value, index)
               }
               width={index < 3 ? "25%" : "40%"}
-              placeholder="project name"
+              placeholder={workItem.placeholder}
             />
             {index < 3 && (
               <Input

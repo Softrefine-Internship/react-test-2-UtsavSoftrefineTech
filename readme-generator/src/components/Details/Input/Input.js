@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const InputField = styled.input`
   width: ${(props) => props.width};
@@ -20,6 +20,12 @@ const InputField = styled.input`
   @media only screen and (max-width: 450px) {
     margin-right: 1rem;
   }
+
+  ${(props) =>
+    /link/.test(props.placeholder) &&
+    css`
+      color: #2b6cb0;
+    `}
 `;
 const Input = (props) => {
   // This is the function that will be called when the input value changes

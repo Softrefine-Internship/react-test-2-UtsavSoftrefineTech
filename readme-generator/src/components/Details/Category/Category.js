@@ -496,7 +496,6 @@ const CategoryContainer = styled.div`
 
     @media screen and (max-width: 400px) {
       font-size: 1rem;
-      margin-left: 0;
       padding: 0.5rem;
     }
   }

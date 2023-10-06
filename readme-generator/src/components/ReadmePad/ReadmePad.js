@@ -478,7 +478,7 @@ const ReadmePad = ({ toggleActionButtons }) => {
   const handleCopyMarkdown = () => {
     const markdownString = formateMeark(markdown);
     navigator.clipboard.writeText(markdownString);
-    alert("Markdown content copied to clipboard!");
+    // alert("Markdown content copied to clipboard!");
   };
 
   const handleDownloadMarkdown = () => {
