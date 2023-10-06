@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+// Input Styling
 const InputField = styled.input`
   width: ${(props) => props.width};
   height: 3rem;
@@ -28,7 +29,7 @@ const InputField = styled.input`
     `}
 `;
 const Input = (props) => {
-  // This is the function that will be called when the input value changes
+  // Handle input change
   const handleChange = (e) => {
     if (props.onChange) {
       props.onChange(e.target.value);

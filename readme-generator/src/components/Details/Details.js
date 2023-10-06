@@ -5,6 +5,7 @@ import Heading from "./Heading/Heading";
 import Category from "./Category/Category";
 import SocialLinks from "./SocialLinks/SocialLinks";
 
+// Details Styling
 const DetailsContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -26,6 +27,7 @@ const BreakPoint = styled.div`
 `;
 
 const Details = () => {
+  // handle the data based on the user input using useState
   const [data, setData] = useState(() => {
     const storedData = localStorage.getItem("data");
     return storedData
@@ -91,6 +93,7 @@ const Details = () => {
         };
   });
 
+  // handle the input change
   const handleInputChange = (category, field, value, index = null) => {
     setData((prevData) => {
       const newData = { ...prevData }; // Copy the object
@@ -104,16 +107,19 @@ const Details = () => {
     });
   };
 
+  // handle the skills based on the user clicked skills
   const [skills, setSkills] = useState(() => {
     const storedSkills = localStorage.getItem("skills");
     console.log("---------------", storedSkills);
     return storedSkills ? JSON.parse(storedSkills) : [];
   });
 
+  // handle the selected skills
   const handleSelectedSkillsChange = (selectedSkills) => {
     setSkills(selectedSkills);
   };
 
+  // handle the social links based on the user input using useState
   const [socialLinks, setSocialLinks] = useState(() => {
     const storedSocialLinks = localStorage.getItem("socialLinks");
 
@@ -291,12 +297,14 @@ const Details = () => {
         ];
   });
 
+  // generate the final link for the user navigate to the social platform
   for (const platform of socialLinks) {
     platform.value
       ? (platform.finallink = platform.link + platform.value)
       : (platform.finallink = "");
   }
 
+  // handle the social links change
   const handleSocialLinkChange = (index, value) => {
     setSocialLinks((prevData) => {
       const newData = [...prevData];
@@ -305,18 +313,22 @@ const Details = () => {
     });
   };
 
+  // store the data in the local storage when the data changes
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
 
+  // store the skills in the local storage when the skills changes
   useEffect(() => {
     localStorage.setItem("skills", JSON.stringify(skills));
   }, [skills]);
 
+  // store the social links in the local storage when the social links changes
   useEffect(() => {
     localStorage.setItem("socialLinks", JSON.stringify(socialLinks));
   }, [socialLinks]);
 
+  // initialize the data in the local storage when the component mounts
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(data));
   }, []);

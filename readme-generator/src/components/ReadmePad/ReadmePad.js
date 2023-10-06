@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactDOMServer from "react-dom/server";
-import Markdown from "react-markdown";
 import styled from "styled-components";
 import ActionButton from "../ActionButton/ActionButton";
 
+// ReadmePad Styling
 const ActionButtonWrapper = styled.div`
   width: 90%;
   margin: 0 auto;
@@ -29,21 +29,13 @@ const ReadmePadWrapper = styled.div`
   }
 `;
 
-const SocialLink = styled.img`
-  height: 3rem;
-  width: 3rem;
-  margin: 1rem 0.5rem 0 0.5rem;
-`;
-
-const BreakPoint = styled.div`
-  height: 1rem;
-`;
-
 const ReadmePad = ({ toggleActionButtons }) => {
+  // State for the readme pad
   const [data, setData] = useState({});
   const [skills, setSkills] = useState([]);
   const [socialLinks, setSocialLinks] = useState([]);
 
+  // Fetch the data from the Local Storage API
   useEffect(() => {
     const localData = JSON.parse(localStorage.getItem("data"));
     const localSkills = JSON.parse(localStorage.getItem("skills"));
@@ -54,6 +46,7 @@ const ReadmePad = ({ toggleActionButtons }) => {
     setSocialLinks(localSocialLinks);
   }, []);
 
+  // Function to generate the markdown
   const getSkillImage = (skill) => {
     // Create a mapping of skills to image URLs
     const skillImageMap = {
@@ -296,6 +289,7 @@ const ReadmePad = ({ toggleActionButtons }) => {
     return "url_to_default_image";
   };
 
+  // Function to get the skill links
   const getSkillLinks = (skill) => {
     const skillLinks = {
       c: "https://en.wikipedia.org/wiki/C_(programming_language)",
@@ -332,6 +326,122 @@ const ReadmePad = ({ toggleActionButtons }) => {
       html5: "https://en.wikipedia.org/wiki/HTML",
       pug: "https://en.wikipedia.org/wiki/Pug_(programming_language)",
       gulp: "https://en.wikipedia.org/wiki/Gulp.js",
+      sass: "https://en.wikipedia.org/wiki/Sass_(stylesheet_language)",
+      redux: "https://en.wikipedia.org/wiki/Redux_(JavaScript_library)",
+      webpack: "https://en.wikipedia.org/wiki/Webpack",
+      babel: "https://en.wikipedia.org/wiki/Babel_(transcompiler)",
+      tailwind: "https://en.wikipedia.org/wiki/Tailwind_CSS",
+      materialize: "https://en.wikipedia.org/wiki/Materialize_CSS",
+      bulma: "https://en.wikipedia.org/wiki/Bulma_(CSS_framework)",
+      gtk: "https://en.wikipedia.org/wiki/GTK",
+      qt: "https://en.wikipedia.org/wiki/Qt_(software)",
+      wx_widgets: "https://en.wikipedia.org/wiki/WxWidgets",
+      ember: "https://en.wikipedia.org/wiki/Ember.js",
+      nodejs: "https://en.wikipedia.org/wiki/Node.js",
+      spring: "https://en.wikipedia.org/wiki/Spring_Framework",
+      express: "https://en.wikipedia.org/wiki/Express.js",
+      graphql: "https://en.wikipedia.org/wiki/GraphQL",
+      kafka: "https://en.wikipedia.org/wiki/Apache_Kafka",
+      solr: "https://en.wikipedia.org/wiki/Apache_Solr",
+      rabbitMQ: "https://en.wikipedia.org/wiki/RabbitMQ",
+      hadoop: "https://en.wikipedia.org/wiki/Apache_Hadoop",
+      nginx: "https://en.wikipedia.org/wiki/Nginx",
+      openresty: "https://en.wikipedia.org/wiki/OpenResty",
+      nestjs: "https://en.wikipedia.org/wiki/NestJS",
+      android: "https://en.wikipedia.org/wiki/Android_(operating_system)",
+      flutter: "https://en.wikipedia.org/wiki/Flutter_(software)",
+      dart: "https://en.wikipedia.org/wiki/Dart_(programming_language)",
+      kotlin: "https://en.wikipedia.org/wiki/Kotlin_(programming_language)",
+      nativescript: "https://en.wikipedia.org/wiki/NativeScript",
+      xamarin: "https://en.wikipedia.org/wiki/Xamarin",
+      reactnative: "https://en.wikipedia.org/wiki/React_Native",
+      ionic: "https://en.wikipedia.org/wiki/Ionic_(mobile_app_framework)",
+      apachecordova: "https://en.wikipedia.org/wiki/Apache_Cordova",
+      tensorflow: "https://en.wikipedia.org/wiki/TensorFlow",
+      pytorch: "https://en.wikipedia.org/wiki/PyTorch",
+      pandas: "https://en.wikipedia.org/wiki/Pandas_(software)",
+      seaborn: "https://en.wikipedia.org/wiki/Seaborn_(software)",
+      opencv: "https://en.wikipedia.org/wiki/OpenCV",
+      scikit_learn: "https://en.wikipedia.org/wiki/Scikit-learn",
+      mongodb: "https://en.wikipedia.org/wiki/MongoDB",
+      mysql: "https://en.wikipedia.org/wiki/MySQL",
+      postgresql: "https://en.wikipedia.org/wiki/PostgreSQL",
+      redis: "https://en.wikipedia.org/wiki/Redis",
+      oracle: "https://en.wikipedia.org/wiki/Oracle_Database",
+      cassandra: "https://en.wikipedia.org/wiki/Apache_Cassandra",
+      couchdb: "https://en.wikipedia.org/wiki/CouchDB",
+      hive: "https://en.wikipedia.org/wiki/Apache_Hive",
+      realm: "https://en.wikipedia.org/wiki/Realm_(database)",
+      mariadb: "https://en.wikipedia.org/wiki/MariaDB",
+      cockroachdb: "https://en.wikipedia.org/wiki/CockroachDB",
+      elasticsearch: "https://en.wikipedia.org/wiki/Elasticsearch",
+      sqlite: "https://en.wikipedia.org/wiki/SQLite",
+      mssql: "https://en.wikipedia.org/wiki/Microsoft_SQL_Server",
+      d3js: "https://en.wikipedia.org/wiki/D3.js",
+      chartjs: "https://en.wikipedia.org/wiki/Chart.js",
+      canvasjs: "https://en.wikipedia.org/wiki/CanvasJS",
+      kibana: "https://en.wikipedia.org/wiki/Kibana",
+      grafana: "https://en.wikipedia.org/wiki/Grafana",
+      aws: "https://en.wikipedia.org/wiki/Amazon_Web_Services",
+      docker: "https://en.wikipedia.org/wiki/Docker_(software)",
+      jenkins: "https://en.wikipedia.org/wiki/Jenkins_(software)",
+      gcp: "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      kubernetes: "https://en.wikipedia.org/wiki/Kubernetes",
+      bash: "https://en.wikipedia.org/wiki/Bash_(Unix_shell)",
+      azure: "https://en.wikipedia.org/wiki/Microsoft_Azure",
+      vagrant: "https://en.wikipedia.org/wiki/Vagrant_(software)",
+      circleci: "https://en.wikipedia.org/wiki/CircleCI",
+      travisci: "https://en.wikipedia.org/wiki/Travis_CI",
+      firebase: "https://en.wikipedia.org/wiki/Firebase",
+      appwrite: "https://en.wikipedia.org/wiki/Appwrite",
+      amplify: "https://en.wikipedia.org/wiki/AWS_Amplify",
+      heroku: "https://en.wikipedia.org/wiki/Heroku",
+      django: "https://en.wikipedia.org/wiki/Django_(web_framework)",
+      dotnet: "https://en.wikipedia.org/wiki/.NET_Framework",
+      electron: "https://en.wikipedia.org/wiki/Electron_(software_framework)",
+      symfony: "https://en.wikipedia.org/wiki/Symfony",
+      laravel: "https://en.wikipedia.org/wiki/Laravel",
+      codeigniter: "https://en.wikipedia.org/wiki/CodeIgniter",
+      rails: "https://en.wikipedia.org/wiki/Ruby_on_Rails",
+      flask: "https://en.wikipedia.org/wiki/Flask_(web_framework)",
+      quasar: "https://en.wikipedia.org/wiki/Quasar_(framework)",
+      cypress: "https://en.wikipedia.org/wiki/Cypress_(software_company)",
+      selenium: "https://en.wikipedia.org/wiki/Selenium_(software)",
+      jest: "https://en.wikipedia.org/wiki/Jest_(JavaScript_framework)",
+      mocha: "https://en.wikipedia.org/wiki/Mocha_(JavaScript_framework)",
+      puppeteer: "https://en.wikipedia.org/wiki/Puppeteer_(software)",
+      karma: "https://en.wikipedia.org/wiki/Karma_(JavaScript_test_runner)",
+      jasmine: "https://en.wikipedia.org/wiki/Jasmine_(JavaScript_framework)",
+      illustrator: "https://en.wikipedia.org/wiki/Adobe_Illustrator",
+      photoshop: "https://en.wikipedia.org/wiki/Adobe_Photoshop",
+      xd: "https://en.wikipedia.org/wiki/Adobe_XD",
+      figma: "https://en.wikipedia.org/wiki/Figma",
+      blender: "https://en.wikipedia.org/wiki/Blender_(software)",
+      sketch: "https://en.wikipedia.org/wiki/Sketch_(software)",
+      invision: "https://en.wikipedia.org/wiki/InVision_(company)",
+      framer: "https://en.wikipedia.org/wiki/Framer_(company)",
+      matlab: "https://en.wikipedia.org/wiki/MATLAB",
+      postman: "https://en.wikipedia.org/wiki/Postman_(software)",
+      gatsby: "https://en.wikipedia.org/wiki/Gatsby_(framework)",
+      gridsome: "https://en.wikipedia.org/wiki/Static_web_page",
+      hugo: "https://en.wikipedia.org/wiki/Hugo_(software)",
+      jekyll: "https://en.wikipedia.org/wiki/Jekyll_(software)",
+      nextjs: "https://en.wikipedia.org/wiki/Next.js",
+      nuxtjs: "https://en.wikipedia.org/wiki/Nuxt.js",
+      "11ty": "https://en.wikipedia.org/wiki/Eleventy_(software)",
+      scully: "https://en.wikipedia.org/wiki/Scully_(software)",
+      sculpin: "https://en.wikipedia.org/wiki/Sculpin",
+      sapper: "https://en.wikipedia.org/wiki/Sapper_(software)",
+      vuepress: "https://en.wikipedia.org/wiki/VuePress",
+      hexo: "https://en.wikipedia.org/wiki/Hexo",
+      middleman: "https://en.wikipedia.org/wiki/Middleman_(software)",
+      unity: "https://en.wikipedia.org/wiki/Unity_(game_engine)",
+      unreal: "https://en.wikipedia.org/wiki/Unreal_Engine",
+      zapier: "https://en.wikipedia.org/wiki/Zapier",
+      ifttt: "https://en.wikipedia.org/wiki/IFTTT",
+      linux: "https://en.wikipedia.org/wiki/Linux",
+      git: "https://en.wikipedia.org/wiki/Git",
+      arduino: "https://en.wikipedia.org/wiki/Arduino",
     };
 
     if (skillLinks.hasOwnProperty(skill)) {
@@ -341,6 +451,7 @@ const ReadmePad = ({ toggleActionButtons }) => {
     return "";
   };
 
+  // Markdown for the readme
   const markdown = (
     <>
       <code>
@@ -445,6 +556,7 @@ const ReadmePad = ({ toggleActionButtons }) => {
     </>
   );
 
+  // Function to format the markdown
   const formateMeark = (markdown) => {
     const markdownString = ReactDOMServer.renderToStaticMarkup(markdown);
     const result = markdownString
@@ -475,12 +587,13 @@ const ReadmePad = ({ toggleActionButtons }) => {
     return result;
   };
 
+  // Function to copy the markdown
   const handleCopyMarkdown = () => {
     const markdownString = formateMeark(markdown);
     navigator.clipboard.writeText(markdownString);
-    // alert("Markdown content copied to clipboard!");
   };
 
+  // Function to download the markdown
   const handleDownloadMarkdown = () => {
     const blob = new Blob([formateMeark(markdown)], {
       type: "text/plain",

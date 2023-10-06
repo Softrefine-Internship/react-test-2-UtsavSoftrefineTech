@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+// Header Styling
 const Header = () => {
   const Header = styled.header`
     height: min-content;
@@ -57,9 +58,11 @@ const Header = () => {
 
   `;
 
+  // State for the star and fork count
   const [star, setStar] = useState(0);
   const [fork, setFork] = useState(0);
 
+  // Fetch the data from the GitHub API
   const fetchData = async () => {
     const res = await fetch(
       "https://api.github.com/repos/UtsavDesai26/CICD-Pipeline"
@@ -69,18 +72,20 @@ const Header = () => {
     setFork(data.forks_count);
   };
 
+  // Open the GitHub repo in a new tab with the fork option
   const openGitHubRepoFork = () => {
     window.open("https://github.com/UtsavDesai26/CICD-Pipeline/fork", "_blank");
   };
 
+  // Open the GitHub repo in a new tab
   const openGitHubRepoStar = () => {
     window.open("https://github.com/UtsavDesai26/CICD-Pipeline", "_blank");
   };
 
+  // Fetch the data every 6 seconds
   useEffect(() => {
     fetchData();
     setInterval(fetchData, 6000);
-
     return () => {};
   }, []);
 

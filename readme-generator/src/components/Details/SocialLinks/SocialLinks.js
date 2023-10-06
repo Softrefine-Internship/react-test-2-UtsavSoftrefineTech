@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "../Input/Input";
 
+// Social Links Styling
 const SocialContainer = styled.div`
   margin: 2rem;
   padding: 2rem;
@@ -37,16 +38,21 @@ const ErrrorBox = styled.div`
 `;
 
 const SocialLinks = (props) => {
+  // Get the social links from props
   const { socialLinks } = props;
+
+  // validationErrors is an array of error messages for each social link
   const [validationErrors, setValidationErrors] = useState(
     new Array(socialLinks.length).fill("")
   );
 
+  // Validate the input based on the social link
   const validateInput = (index, value) => {
     const linkTitle = socialLinks[index].title;
     let isValid = true;
     let errorMessage = "";
 
+    // Validate the input based on the social link with particular social link regex
     switch (linkTitle) {
       case "GitHub":
         isValid = /^[a-zA-Z\d]([a-zA-Z\d]|-(?=[a-zA-Z\d])){0,38}$/.test(value);
@@ -154,6 +160,7 @@ const SocialLinks = (props) => {
       isValid = true;
     }
 
+    // Update the validationErrors array
     const errors = [...validationErrors];
     errors[index] = isValid ? "" : errorMessage;
 

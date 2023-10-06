@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// SearchBar Styling
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -40,14 +41,17 @@ const ClearIcon = styled.span`
 `;
 
 function SearchBar(props) {
+  // Get the props
   const { placeholder, value, onSearch, onClear } = props;
 
+  // Handle search
   const handleSearch = () => {
     if (onSearch) {
       onSearch(value);
     }
   };
 
+  // Handle Search Clear
   const handleClear = () => {
     if (onClear) {
       onClear();

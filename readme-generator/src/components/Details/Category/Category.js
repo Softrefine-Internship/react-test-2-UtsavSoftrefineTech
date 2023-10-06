@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchBar from "../SearchBar/SearchBar";
 import Heading from "../Heading/Heading";
 
+// Category data
 const categorizedSkills = {
   language: {
     title: "Programming Languages",
@@ -395,6 +396,7 @@ const categorizedSkills = {
   },
 };
 
+// Category Styling
 const CategoryHeader = styled.div`
   display: flex;
   align-items: center;
@@ -510,9 +512,11 @@ const CategoryContainer = styled.div`
 `;
 
 const Category = ({ skills, onSelectedSkillsChange }) => {
+  // Search input state and selected skills state
   const [searchInput, setSearchInput] = useState("");
   const [selectedSkills, setSelectedSkills] = useState(skills);
 
+  // Filter the categorizedSkills object based on the search input
   const filteredSkills = Object.keys(categorizedSkills).reduce(
     (result, categoryKey) => {
       const category = categorizedSkills[categoryKey];
@@ -530,10 +534,12 @@ const Category = ({ skills, onSelectedSkillsChange }) => {
     {}
   );
 
+  // Clear the search input
   const handleClearSearch = () => {
     setSearchInput("");
   };
 
+  // Handle checkbox change
   const handleCheckboxChange = (skill) => {
     if (selectedSkills.includes(skill)) {
       setSelectedSkills((prevSelectedSkills) =>
@@ -549,8 +555,8 @@ const Category = ({ skills, onSelectedSkillsChange }) => {
     return selectedSkills.includes(skill);
   };
 
+  // Update the selectedSkills array in the parent component
   useEffect(() => {
-    // Call the callback function with the selectedSkills array
     onSelectedSkillsChange(selectedSkills);
   }, [selectedSkills]);
 

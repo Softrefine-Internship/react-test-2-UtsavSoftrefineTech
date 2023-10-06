@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
+// Button Styling
 const Button = styled.button`
   display: flex;
   justify-content: center;
@@ -80,8 +81,10 @@ const ActionText = styled.p`
 `;
 
 const ActionButton = ({ onClick, icon, text }) => {
+  // State for the animation
   const [isClicked, setIsClicked] = useState(false);
 
+  // Handle the click event
   const handleClick = () => {
     setIsClicked(true);
     onClick();
@@ -92,8 +95,8 @@ const ActionButton = ({ onClick, icon, text }) => {
     }, 500);
   };
 
+  // Set the animation based on the text
   let animation = "";
-
   if (text === "copy markdown") {
     animation = "copy";
   } else if (text === "download readme.md") {
